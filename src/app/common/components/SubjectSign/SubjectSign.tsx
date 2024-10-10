@@ -1,27 +1,25 @@
 import Image from "next/image";
 import { backgroundColors } from "../../utils/utils";
+import { SubjectSignType } from "../../types";
 
-interface SubjectSignType {
-    title: string;
-    icon: string;
-}
-
-const SubjectSign = ({ title, icon }: SubjectSignType) => {
+const SubjectSign = ({ title, icon, className }: SubjectSignType) => {
   return (
-    <div className="flex gap-x-2 items-center justify-center">
+    <div className={className}>
       <div
         className="p-2 rounded-lg w-[40px] h-[40px]"
         style={{ backgroundColor: backgroundColors[title] }}
       >
         <Image
           src={icon}
-          alt={'Subject icon'}
+          alt={"Subject icon"}
           width={30}
           height={30}
           className=""
         />
       </div>
-      <p className="font-bold xs:text-xl md:text-2xl">{title}</p>
+      <p className="text-[18px] not-italic font-medium leading-[18px] md:text-[28px] md:leading-[28px]">
+        {title}
+      </p>
     </div>
   );
 };

@@ -1,9 +1,4 @@
-interface ButtonType {
-  className: string;
-  children: React.ReactNode;
-  onClick: () => void;
-  disabled?: boolean | undefined;
-}
+import { ButtonType } from "../../types";
 
 const Button = ({ onClick, className, children, disabled }: ButtonType) => {
   return (

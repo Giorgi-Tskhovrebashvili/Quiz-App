@@ -11,7 +11,7 @@ const Result = ({ selectedQuiz, score }: ResultType) => {
 
   return (
     <div className="flex flex-col gap-4 bg-[#fff] dark:bg-slate p-10 rounded-xl">
-      <SubjectSign title={selectedQuiz.title} icon={selectedQuiz.icon} />
+      <SubjectSign title={selectedQuiz.title} icon={selectedQuiz.icon} className={""} />
       <div className="flex flex-col justify-center items-center gap-4">
         <p className="text-dark-blue dark:text-white font-bold xs:text-5xl sm:text-5xl lg:text-9xl">
           {score}

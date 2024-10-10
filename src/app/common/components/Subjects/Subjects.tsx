@@ -1,20 +1,15 @@
 "use client";
-import { Quizz } from "@/app/common/types/common";
+import { SubjectsProps } from "@/app/common/types/common";
 import { Button, SubjectSign } from "..";
-
-type SubjectsProps = {
-  data: Quizz[];
-  onSelectQuiz: (quiz: Quizz) => void;
-};
 
 const Subjects = ({ data, onSelectQuiz }: SubjectsProps) => {
 
   return (
-    <>
+    <div className="flex flex-col items-start gap-[12px] w-[327px] md:w-[640px] md:gap-[24px] xl:w-[564px]">
       {data.map((subject) => (
         <Button
           key={subject.title}
-          className=""
+          className="flex items-center p-[12px] w-[327px] rounded-[12px] bg-white shadow-lg ring-1 hover:ring-purple transition-all md:w-[640px] md:rounded-[24px] xl:w-[564px] xl:p-[20px]"
           onClick={() => {
             const selectedQuiz = data.find(
               (quiz) => quiz.title === subject.title
@@ -24,10 +19,10 @@ const Subjects = ({ data, onSelectQuiz }: SubjectsProps) => {
             }
           }}
         >
-          <SubjectSign title={subject.title} icon={subject.icon} />
+          <SubjectSign title={subject.title} icon={subject.icon} className={"flex gap-[16px] items-center md:gap-[32px]"} />
         </Button>
       ))}
-    </>
+    </div>
   );
 };
 

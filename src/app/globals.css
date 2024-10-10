@@ -15,3 +15,14 @@ body {
     background-color: #313E51; 
     color: #FFFFFF;
 }
+
+button {
+    background-color: #FFFFFF; 
+    color: #313E51; 
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark button {
+    background-color: #3B4D66; 
+    color: #ffffff; 
+}

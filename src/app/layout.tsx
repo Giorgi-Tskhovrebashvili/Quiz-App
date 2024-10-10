@@ -20,6 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-icon_149152-813.jpg"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quiz App</title>
+      </head>
       <body className={rubik.className}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>

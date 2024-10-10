@@ -1,9 +1,4 @@
-interface InputType {
-  type: "text" | "checkbox";
-  id: string;
-  className: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputType } from "../../types";
 
 const Input = ({ type, className, id, onChange }: InputType) => {
   return (

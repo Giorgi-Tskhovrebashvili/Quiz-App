@@ -14,7 +14,7 @@ const SwitchThemes = () => {
   }, [darkMode]);
 
   return (
-    <div className="flex items-center gap-x-2 md:pr-6 lg:p-0 xl:gap-x-4">
+    <div className="flex items-center gap-[8px] w-[80px] md:w-[128px] md:gap-[16px]">
       <Image
         src={darkMode ? '/assets/images/icon-sun-light.svg' : '/assets/images/icon-sun-dark.svg'}
         alt="moon"

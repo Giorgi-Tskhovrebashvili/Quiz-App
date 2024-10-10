@@ -1,18 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  Intro,
-  Loader,
-  MainLayout,
-  Quiz,
-  Subjects,
-} from "./common/components";
+import { Intro, Loader, MainLayout, Quiz, Result, Subjects } from "./common/components";
 import { Quizz } from "./common/types";
 
 export default function Home() {
   const [data, setData] = useState<Quizz[]>([]);
   const [selectedQuiz, setSelectedQuiz] = useState<Quizz | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [hasCompleteAll] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +45,19 @@ export default function Home() {
     setCurrentQuestionIndex(0);
   };
 
-  const handleNextQuestion = () => {
+  const handleAnswer = (questionId: number, answer: string) => {
+    if (!selectedQuiz) return;
+
+    const updatedQuestions = selectedQuiz.questions.map((question) =>
+      question.id === questionId
+        ? { ...question, userSelectedAnswer: answer }
+        : question
+    );
+
+    setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
+  };
+
+  const goNextQuestion = () => {
     if (
       selectedQuiz &&
       currentQuestionIndex < selectedQuiz.questions.length - 1
@@ -59,31 +66,28 @@ export default function Home() {
     }
   };
 
-  const handlePreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
-    }
-  };
-
   return (
     <MainLayout>
-      {data.length > 0 ? (
-        <div className="flex gap-[20px]">
+      {!selectedQuiz && (
+        <div className="flex flex-col gap-[40px] items-start w-[327px] mx-[24px] mt-[32px] md:w-[640px] md:gap-[64px] md:mx-[64px] md:mt-[23px] xl:flex-row xl:w-[1160px] xl:justify-between xl:mt-[16px]">
           <Intro />
           <Subjects data={data} onSelectQuiz={handleSelectQuiz} />
         </div>
-      ) : (
-        <p>No data available</p>
       )}
 
       {selectedQuiz && (
         <Quiz
           selectedQuiz={selectedQuiz}
           currentQuestionIndex={currentQuestionIndex}
-          handleNextQuestion={handleNextQuestion}
-          handlePreviousQuestion={handlePreviousQuestion}
+          handleAnswer={handleAnswer}
+          questionId={selectedQuiz.questions[currentQuestionIndex].id}
+          goNextQuestion={goNextQuestion}
         />
       )}
+
+      {/* {hasCompleteAll && (
+        <Result selectedQuiz={selectedQuiz} score={0} />
+      )} */}
     </MainLayout>
   );
 }

@@ -1,12 +1,10 @@
-interface ProgressType {
-    currentIndex: number;
-    total: number;
-  };
+import { ProgressType } from "../../types";
+
   const Progress = ({ currentIndex, total }: ProgressType) => {
     const progressPercentage = ((currentIndex) / total) * 100;
   
     return (
-      <div className="w-full h-[5px] bg-[#fff] dark:bg-slate rounded-full">
+      <div className="w-full h-[16px] p-[4px] bg-[#fff] rounded-full">
         <div
           className="h-full bg-purple transition-all rounded-full"
           style={{ width: `${progressPercentage}%` }}
