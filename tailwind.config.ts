@@ -8,27 +8,8 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        xs: "300px",
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1300px",
-        "2xl": "1440px",
-      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-
-        "pattern-light-desktop":
-          "url('/assets/images/pattern-background-desktop-light.svg')",
-        "pattern-dark-desktop":
-          "url('/assets/images/pattern-background-desktop-dark.svg')",
-        "pattern-light-mobile":
-          "url('/assets/images/pattern-background-mobile-light.svg')",
-        "pattern-dark-mobile":
-          "url('/assets/images/pattern-background-mobile-dark.svg')",
+        'custom-gradient': 'linear-gradient(0deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%), var(--Purple, #A729F5)',
       },
       colors: {
         "light-blue": "#ABC1E1",

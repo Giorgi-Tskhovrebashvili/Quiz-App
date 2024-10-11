@@ -13,22 +13,6 @@ export interface Quizz {
   questions: Question[];
 }
 
-export interface State {
-  quizzes: Quizz[];
-  questions: Question[];
-  selectedQuizz: Quizz | null;
-  currentQuestion: number;
-  hasCompleteAll: boolean;
-  score: number;
-  selectQuizz: (quizz: Quizz) => void;
-  fetchQuizzes: () => Promise<void>;
-  selectAnswer: (questionId: number, selectedAnswer: string) => void;
-  goNextQuestion: () => void;
-  goPreviousQuestion: () => void;
-  onCompleteQuestions: () => void;
-  reset: () => void;
-}
-
 export interface InputType {
   type: "text" | "checkbox";
   id: string;
@@ -63,4 +47,29 @@ export interface CurrentQuestionType {
 export interface ProgressType {
   currentIndex: number;
   total: number;
+}
+
+export interface ResultType {
+  selectedQuiz: Quizz;
+  score: number;
+}
+
+export interface QuestionOptionsType {
+  data: Question;
+  answerLabels: string[];
+  goNextQuestion: (isCorrect: boolean) => void;
+}
+
+export interface QuizType {
+  selectedQuiz: Quizz;
+  currentQuestionIndex: number;
+  handleAnswer: (questionId: number, isCorrect: boolean) => void;
+}
+
+export interface MainLayoutType {
+  children: React.ReactNode;
+}
+
+export interface ThemeProviderProps {
+  children: React.ReactNode;
 }

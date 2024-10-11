@@ -26,3 +26,23 @@ button {
     background-color: #3B4D66; 
     color: #ffffff; 
 }
+
+.Result {
+    background-color: #FFFFFF; 
+    color: #313E51; 
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark .Result {
+    background-color: #3B4D66; 
+    color: #ffffff; 
+}
+
+.Progress {
+    background-color: #FFFFFF; 
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark .Progress {
+    background-color: #3B4D66; 
+}

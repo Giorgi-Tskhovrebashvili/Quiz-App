@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Rubik from "next/font/local";
 import "./globals.css";
-import ThemeProvider from "./common/components/Themes/ThemeProvider";
+import ThemeProvider from "./common/components/_molecules/Themes/ThemeProvider";
 
 const rubik = Rubik({
   src: "/fonts/Rubik-VariableFont_wght.ttf",
