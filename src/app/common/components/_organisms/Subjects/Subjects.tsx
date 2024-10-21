@@ -8,7 +8,7 @@ const Subjects = ({ data, onSelectQuiz }: SubjectsProps) => {
       {data.map((subject) => (
         <Button
           key={subject.title}
-          className="flex items-center p-[12px] w-[327px] rounded-[12px] bg-white shadow-lg ring-1 hover:ring-purple transition-all md:w-[640px] md:rounded-[24px] xl:w-[564px] xl:p-[20px]"
+          className="flex items-center p-[12px] w-[327px] h-[64px] rounded-[12px] bg-white shadow-lg ring-1 hover:ring-purple transition-all md:w-[640px] md:h-[80px] md:rounded-[24px] xl:w-[564px] xl:p-[20px] xl:h-[96px]"
           onClick={() => {
             const selectedQuiz = data.find(
               (quiz) => quiz.title === subject.title

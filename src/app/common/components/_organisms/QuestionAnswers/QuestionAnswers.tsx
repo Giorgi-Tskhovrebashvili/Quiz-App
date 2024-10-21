@@ -53,7 +53,7 @@ const QuestionAnswers = ({
                 isCorrect === true &&
                   selectedAns === answer &&
                   "border-green border-[3px] border-solid",
-                "flex justify-between items-center p-[12px] w-[327px] rounded-[12px] bg-white shadow-lg ring-1 hover:ring-purple transition-all md:w-[640px] md:rounded-[24px] xl:w-[564px] xl:p-[20px]"
+                "flex justify-between items-center p-[12px] w-[327px] h-[64px] rounded-[12px] bg-white shadow-lg ring-1 hover:ring-purple transition-all md:w-[640px] md:h-[80px] md:rounded-[24px] xl:w-[564px] xl:px-[20px] xl:py-[18px] xl:h-[92px]"
               )}
               onClick={() => handleSelectAnswer(answer)}
               aria-label={`Answer option ${answerLabels[index]}`}
@@ -88,7 +88,7 @@ const QuestionAnswers = ({
       </ul>
       <Button
         onClick={submitted ? handleNextClick : handleSubmit}
-        className="flex items-center justify-center p-[12px] w-[327px] rounded-[12px] dark:!bg-purple dark:!text-white shadow-lg transition-all text-[18px] font-medium not-italic leading-[18px] md:w-[640px] md:rounded-[24px] md:text-[28px] md:leading-[28px] xl:w-[564px] xl:p-[32px] hover:bg-custom-gradient"
+        className="flex items-center justify-center p-[12px] w-[327px] h-[56px] rounded-[12px] self-stretch dark:!bg-purple dark:!text-white shadow-lg transition-all text-[18px] font-medium not-italic leading-[18px] md:w-[640px] md:h-[80px] md:rounded-[24px] md:text-[28px] md:leading-[28px] md:p-[32px] xl:w-[564px] hover:bg-custom-gradient"
       >
         {submitted ? "Next Question" : "Submit Answer"}
       </Button>
