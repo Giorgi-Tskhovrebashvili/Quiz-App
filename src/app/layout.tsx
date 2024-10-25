@@ -25,7 +25,7 @@ export default function RootLayout({
         <link
           rel="icon"
           type="image/svg+xml"
-          href="https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-icon_149152-813.jpg"
+          href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gpDGkul4kz7YIZ1KQgxQGDjt-bnrYJ1xXg&s"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Quiz App</title>
