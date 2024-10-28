@@ -1,43 +1,22 @@
-import { useState } from "react";
 import { Button, CorrectAnswer, IncorrectAnswer, SubmitError } from "../..";
 import { QuestionOptionsType } from "../../../types";
 import { cn } from "../../../utils/utils";
+import useQuestionAnswers from "../../../hooks/useQuestionAnswers";
 
 const QuestionAnswers = ({
   data,
   answerLabels,
   goNextQuestion,
 }: QuestionOptionsType) => {
-  const [selectedAns, setSelectedAns] = useState("");
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showError, setShowError] = useState<boolean>(false);
-
-  const handleSubmit = () => {
-    if (!selectedAns) {
-      setShowError(true);
-      return;
-    }
-
-    setShowError(false);
-    const correctAnswer = data.answer;
-    const isAnswerCorrect = selectedAns === correctAnswer;
-
-    setIsCorrect(isAnswerCorrect);
-    setSubmitted(true);
-  };
-
-  const handleNextClick = () => {
-    goNextQuestion(isCorrect || false);
-    setSelectedAns("");
-    setSubmitted(false);
-    setIsCorrect(null);
-  };
-
-  const handleSelectAnswer = (answer: string) => {
-    if (submitted) return;
-    setSelectedAns(answer);
-  };
+  const {
+    selectedAns,
+    submitted,
+    isCorrect,
+    showError,
+    handleSelectAnswer,
+    handleSubmit,
+    handleNextClick,
+  } = useQuestionAnswers({ data, answerLabels, goNextQuestion });
 
   return (
     <div className="flex flex-col items-center gap-[12px] md:gap-[32px]">
