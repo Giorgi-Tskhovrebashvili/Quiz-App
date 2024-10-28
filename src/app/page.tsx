@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import {
   Button,
   FinalInfo,
@@ -13,62 +12,25 @@ import {
 } from "./common/components";
 import { Quizz } from "./common/types";
 import {
-  getFromLocalStorage,
   removeFromLocalStorage,
-  saveToLocalStorage,
 } from "./common/utils/localStorage";
+import useFetch from "./common/utils/useFetch";
 
 export default function Home() {
-  const [data, setData] = useState<Quizz[]>([]);
-  const [selectedQuiz, setSelectedQuiz] = useState<Quizz | null>(null);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [hasCompleteAll, setHasCompleteAll] = useState<boolean>(false);
-  const [userAnswers, setUserAnswers] = useState<
-    { questionId: number; isCorrect: boolean }[]
-  >([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const savedQuiz = getFromLocalStorage("quizProgress");
-    if (savedQuiz) {
-      setSelectedQuiz(savedQuiz.selectedQuiz);
-      setCurrentQuestionIndex(savedQuiz.currentQuestionIndex);
-      setUserAnswers(savedQuiz.userAnswers);
-      setHasCompleteAll(savedQuiz.hasCompleteAll);
-    }
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const jsonData = await response.json();
-        const quizzes = jsonData.quizzes as Quizz[];
-        setData(quizzes);
-        setLoading(false);
-      } catch (error: any) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const saveProgressToLocalStorage = () => {
-    const progress = {
-      selectedQuiz,
-      currentQuestionIndex,
-      userAnswers,
-      hasCompleteAll,
-    };
-    saveToLocalStorage("quizProgress", progress);
-  };
-
-  if (loading) return <Loader />;
-  if (error) return <SubmitError />;
+  const {
+    data,
+    selectedQuiz,
+    setSelectedQuiz,
+    currentQuestionIndex,
+    setCurrentQuestionIndex,
+    hasCompleteAll,
+    setHasCompleteAll,
+    userAnswers,
+    setUserAnswers,
+    loading,
+    error,
+    saveProgress,
+  } = useFetch();
 
   const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5);
 
@@ -78,7 +40,7 @@ export default function Home() {
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
     setHasCompleteAll(false);
-    saveProgressToLocalStorage();
+    saveProgress();
   };
 
   const handleAnswer = (questionId: number, isCorrect: boolean) => {
@@ -86,7 +48,7 @@ export default function Home() {
     setUserAnswers(newAnswers);
 
     if (selectedQuiz) {
-      saveProgressToLocalStorage();
+      saveProgress();
     }
 
     if (currentQuestionIndex < (selectedQuiz?.questions.length || 0) - 1) {
@@ -96,6 +58,9 @@ export default function Home() {
       removeFromLocalStorage("quizProgress");
     }
   };
+
+  if (loading) return <Loader />;
+  if (error) return <SubmitError />;
 
   return (
     <MainLayout>
